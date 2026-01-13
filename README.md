@@ -19,7 +19,31 @@ A comprehensive test automation framework simulating quality assurance practices
 | **Database**       | SQLite / PostgreSQL (via Docker)    |
 | **CI/CD**          | GitLab CI / GitHub Actions          |
 | **Reporting**      | Allure Reports                      |
-| **Load Testing**   | Locust (optional)                   |
+| **Load Testing**   | Locust                              |
 | **Containerization**| Docker, Docker Compose             |
 
 ## 📁 Project Structure
+
+fintech-qa-automation-2026/
+├── tests/
+│ ├── api/ # REST API tests (market data, order book simulation)
+│ ├── database/ # Data integrity and SQL tests
+│ └── web_ui/ # (Planned) POM-based UI tests
+├── src/
+│ ├── clients/ # API and WebSocket clients
+│ ├── helpers/ # Data generators, validators, SQL queries
+│ └── mocks/ # FastAPI mock server for exchange simulation
+├── config/ # Configuration files (env, endpoints)
+├── docs/ # Additional documentation
+├── docker-compose.yml # Multi-container setup
+├── .gitlab-ci.yml # CI/CD pipeline definition
+└── requirements.txt # Python dependencies
+
+## Quick Start
+
+- git clone https://github.com/user04040404/fintech-qa-automation-2026.git
+- cd fintech-qa-automation-2026
+- python -m venv venv
+- source venv/bin/activate  # Works for both bash and zsh!
+- pip install -r requirements.txt
+- pytest tests/api/test_smoke_public_api.py -v
