@@ -1,0 +1,1 @@
+# fintech-qa-automation-2026
