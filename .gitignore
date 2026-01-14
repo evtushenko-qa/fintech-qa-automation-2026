@@ -213,4 +213,4 @@ __marimo__/
 *.ipr
 
 # Python
-*.py[cod]
+*.py[cod].env
