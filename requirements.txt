@@ -1,0 +1,16 @@
+# Основные зависимости для тестирования
+pytest==7.4.3
+requests==2.32.4
+
+# Для работы с Binance Testnet
+python-binance==1.0.19
+python-dotenv==1.0.0
+
+# Отчеты и документация
+allure-pytest==2.13.2
+pytest-html==4.1.1
+pytest-xdist==3.5.0  # для параллельного запуска тестов
+
+# Моки и тестирование
+pytest-mock==3.11.1
+responses==0.24.1  # для мокинга HTTP-запросов

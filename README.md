@@ -2,13 +2,13 @@
 
 A comprehensive test automation framework simulating quality assurance practices for a cryptocurrency exchange environment. Built with modern Python stack to demonstrate skills relevant to Fintech QA roles.
 
-## 🎯 Project Goals
+## Project Goals
 
 *   Demonstrate proficiency in API, database, and potential UI testing in a financial context.
 *   Showcase understanding of test architecture, CI/CD integration, and reporting.
 *   Serve as a portfolio piece for targeting QA roles in Fintech/Crypto companies.
 
-## 🏗️ Architecture & Tech Stack
+## Architecture & Tech Stack
 
 | Layer              | Technology                          |
 | ------------------ | ----------------------------------- |
@@ -22,7 +22,7 @@ A comprehensive test automation framework simulating quality assurance practices
 | **Load Testing**   | Locust                              |
 | **Containerization**| Docker, Docker Compose             |
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 fintech-qa-automation-2026/
@@ -46,7 +46,7 @@ fintech-qa-automation-2026/
 - git clone https://github.com/user04040404/fintech-qa-automation-2026.git
 - cd fintech-qa-automation-2026
 - python -m venv venv
-- source venv/bin/activate  # Works for both bash and zsh!
+- source venv/bin/activate
 - pip install -r requirements.txt
 - pytest tests/api/test_smoke_public_api.py -v
   
