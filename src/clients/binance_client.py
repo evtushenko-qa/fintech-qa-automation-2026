@@ -37,7 +37,6 @@ class BinanceTestnetClient:
             print(f"Ошибка связи: {e}")
             return False
 
-    
     def get_price(self, symbol="BTCUSDT"):
         try:
             ticker = self.client.get_symbol_ticker(symbol=symbol)
