@@ -61,37 +61,3 @@ class BinanceTestnetClient:
         except Exception as e:
             print(f"Ошибка получения баланса: {e}")
             return None
-    
-    def test_order(self, symbol="BTCUSDT", side="BUY", quantity=0.001):
-        """
-        Тестовый ордер (НЕ исполняется, только проверяет параметры).
-        
-        Args:
-            symbol: Пара торговли (BTCUSDT, ETHUSDT)
-            side: BUY (покупка) или SELL (продажа)
-            quantity: Количество
-        """
-        try:
-            result = self.client.create_test_order(
-                symbol=symbol,
-                side=side,
-                type="MARKET",
-                quantity=quantity
-            )
-            print(f"Тестовый ордер прошел проверку: {side} {quantity} {symbol}")
-            return result
-        except Exception as e:
-            print(f"Ошибка тестового ордера: {e}")
-            raise
-
-    def products(self):
-        """Return list of products currently listed on Binance"""
-        try:
-            products_data = self.client.get_products()
-            print(f"Список всех продуктов Binance")
-            print(f"Всего торговых пар: {len(products_data['symbols'])}")
-
-            return products_data
-        except Exception as e:
-            print(f"❌ Ошибка получения списка продуктов: {e}")
-            return False
