@@ -17,7 +17,7 @@ class BinanceTestnetClient:
             print("или получите ключи: https://testnet.binance.vision")
             raise ValueError("API ключи не настроены")
 
-        if len(self.api_key) != 64:  # Binance API ключ обычно 64 символа
+        if len(self.api_key) != 64:
             raise ValueError("Неверный формат API ключа")
 
         self.client = Client(
@@ -54,7 +54,7 @@ class BinanceTestnetClient:
             for balance in account['balances']:
                 if balance['asset'] == asset:
                     free = float(balance['free'])
-                    print(f"💰 Баланс {asset}: {free}")
+                    print(f"Баланс {asset}: {free}")
                     return free
             print(f"Валюта {asset} не найдена")
             return 0.0
