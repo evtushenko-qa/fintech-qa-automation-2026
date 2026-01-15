@@ -2,37 +2,33 @@ import os
 from binance.client import Client
 from dotenv import load_dotenv
 
-# Загружаем переменные из .env файла
 load_dotenv()
 
 
 class BinanceTestnetClient:
-    """Клиент для тестирования Binance Testnet."""
     
     def __init__(self):
-        """Инициализация клиента."""
-        # Берем ключи из переменных окружения
         self.api_key = os.getenv("BINANCE_TESTNET_API_KEY")
         self.api_secret = os.getenv("BINANCE_TESTNET_SECRET_KEY")
-        
-        # Проверяем что ключи есть
+
         if not self.api_key or not self.api_secret:
             print("Ошибка: API ключи не найдены!")
             print("Создайте файл .env с ключами")
             print("или получите ключи: https://testnet.binance.vision")
             raise ValueError("API ключи не настроены")
-        
-        # Создаем клиент для ТЕСТНЕТА
+
+        if len(self.api_key) != 64:  # Binance API ключ обычно 64 символа
+            raise ValueError("Неверный формат API ключа")
+
         self.client = Client(
             api_key=self.api_key,
             api_secret=self.api_secret,
-            testnet=True  # Работаем с тестовой сетью!
+            testnet=True
         )
         
         print("Binance Testnet клиент создан")
     
     def ping(self):
-        """Проверяем связь с API."""
         try:
             self.client.ping()
             print("Связь с Binance API установлена")
@@ -40,9 +36,9 @@ class BinanceTestnetClient:
         except Exception as e:
             print(f"Ошибка связи: {e}")
             return False
+
     
     def get_price(self, symbol="BTCUSDT"):
-        """Получаем текущую цену."""
         try:
             ticker = self.client.get_symbol_ticker(symbol=symbol)
             price = ticker['price']
@@ -53,7 +49,6 @@ class BinanceTestnetClient:
             return None
 
     def get_balance(self, asset="USDT"):
-        """Получаем баланс по валюте."""
         try:
             account = self.client.get_account()
             for balance in account['balances']:
@@ -77,11 +72,10 @@ class BinanceTestnetClient:
             quantity: Количество
         """
         try:
-            # create_test_order - только проверяет, не исполняет
             result = self.client.create_test_order(
                 symbol=symbol,
                 side=side,
-                type="MARKET",  # Рыночный ордер
+                type="MARKET",
                 quantity=quantity
             )
             print(f"Тестовый ордер прошел проверку: {side} {quantity} {symbol}")
@@ -89,3 +83,15 @@ class BinanceTestnetClient:
         except Exception as e:
             print(f"Ошибка тестового ордера: {e}")
             raise
+
+    def products(self):
+        """Return list of products currently listed on Binance"""
+        try:
+            products_data = self.client.get_products()
+            print(f"Список всех продуктов Binance")
+            print(f"Всего торговых пар: {len(products_data['symbols'])}")
+
+            return products_data
+        except Exception as e:
+            print(f"❌ Ошибка получения списка продуктов: {e}")
+            return False
